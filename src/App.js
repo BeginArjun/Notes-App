@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { Route,Routes} from 'react-router-dom';
+import Footer from './components/Footer';
+import Home from './components/Home/Home';
+import Error from './components/Error';
+import Navbar from './components/Navbar.jsx';
+import About from './components/About/About';
+import ToDo from './components/To-Do/Home'
+import {ContextProvider} from './components/Context/Context'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ContextProvider>
+      <div className='relative'>
+      <div className='relative top-0'>
+      <Navbar/>
+      </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />}/>
+      <Route path="/to-do" element={<ToDo />} />
+      <Route path="*" element={<Error />} />
+    </Routes>
+    <div className='relative bottom-0'>
+    <Footer/>
     </div>
+    </div>
+    </ContextProvider>
   );
 }
 
