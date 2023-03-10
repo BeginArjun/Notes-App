@@ -10,7 +10,7 @@ const Home=()=>{
     const [dataCard,setDataCard]=useState()
     
     useEffect(()=>{
-        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date}/>))
+        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} />))
     },[data])
     return(
         <div className="z-[1] p-6 w-screen h-full bg-[#CFB5E2] relative">

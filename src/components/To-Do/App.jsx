@@ -12,24 +12,6 @@ const App=(props)=>{
     let note={}
     let notes=data
 
-    // const createnewNote=()=>{
-    //     const newNote={
-    //         id:nanoid(),
-    //         title:"Untitled",
-    //         body:"",
-    //         date:new Date().toLocaleDateString()
-    //     }
-    //     setNotes((prevNotes)=>[newNote,...prevNotes])
-    //     setCurrentNoteId(newNote.id)
-    // }
-    // const [currentNoteId, setCurrentNoteId] = useState((data[0][0].id) || "")
-    // const updateNote=(idx)=>{
-    //     const currentNote=data[idx][0]
-    //     note=[{id:idx,title,body,date:new Date().toLocaleDateString()}]
-
-
-    // }
-// [[{}],[{}]]
     const saveNote=()=>{
         note={id:nanoid(),title:title,body:body,date:new Date().toLocaleDateString()}
         notes=[note,...notes]
@@ -38,6 +20,7 @@ const App=(props)=>{
         setTitle("")
         setBody("")
         console.log(notes)
+        props.change(false)
     }
     useEffect(()=>{
         let counter=arrowClicked
