@@ -12,14 +12,23 @@ const App=(props)=>{
     let note={}
     let notes=data
 
-    const saveNote=()=>{
-        note={id:nanoid(),title:title,body:body,date:new Date().toLocaleDateString()}
-        notes=[note,...notes]
+    const createNewNote=()=>{
+        const newNote={id:nanoid(),title:title,body:body,date:new Date().toLocaleDateString()}
+        notes=[newNote,...notes]
         localStorage.setItem('notes',JSON.stringify(notes))
         setData(notes)
+    }
+
+    const saveNote=()=>{
+        const currentNote=data.filter((note)=>note.id===props.currentNoteId)
+        currentNote[0].title=title
+        currentNote[0].body=body
+        let Notes=data.filter((note)=>note.id!==props.currentNoteId)
+        Notes=[currentNote[0],...Notes]
+        localStorage.setItem('notes',JSON.stringify(Notes))
+        setData(Notes)
         setTitle("")
         setBody("")
-        console.log(notes)
         props.change(false)
     }
     useEffect(()=>{
@@ -32,6 +41,7 @@ const App=(props)=>{
         }
         setCurrentColor(colorTheme[counter])
     },[arrowClicked])
+
     return(
         <div className="z-10 absolute top-4 p-4 left-[35%] rounded-lg border-[5px] border-black w-[350px] h-[300px]" style={{display:props.Clicked?'block':'none',backgroundColor:currentColor}}>
             <div className="text-lg flex flex-row justify-start items-center gap-1 absolute top-0 right-1">
@@ -50,7 +60,10 @@ const App=(props)=>{
                     <input name="title" placeholder="Title" type="text" className="outline-none w-full h-full text-xl font-Inter" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                     <textarea style={{resize:'none'}} name="body" className="w-full h-full font-Inter outline-none" value={body} onChange={(e)=>setBody(e.target.value)}/>
                 </form>
-                <button onClick={saveNote}><FaSave/></button>
+                <button onClick={()=>{
+                    createNewNote()
+                    saveNote()
+                }}><FaSave/></button>
         </div>
         </div>
     )

@@ -8,9 +8,12 @@ const Home=()=>{
     const [clicked,setClicked]=useState(false)
     const {data,setData}=useData()
     const [dataCard,setDataCard]=useState()
-    
+    const [currentNoteId,setCurrentNoteId]=useState(data[0]?data[0].id:"")
     useEffect(()=>{
-        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} />))
+        console.log(data)
+    },[])
+    useEffect(()=>{
+        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} currentNoteId={setCurrentNoteId} change={setClicked}/>))
     },[data])
     return(
         <div className="z-[1] p-6 w-screen h-full bg-[#CFB5E2] relative">
@@ -36,7 +39,7 @@ const Home=()=>{
             <FaRegClock color={'black'}/>
         </p>
         </div>
-        <App Clicked={clicked} change={setClicked}/>
+        <App Clicked={clicked} change={setClicked} currentNoteId={currentNoteId}/>
         </div>
     )
 }

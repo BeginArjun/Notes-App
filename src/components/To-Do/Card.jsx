@@ -2,7 +2,6 @@ import {FaPen,FaTrash} from 'react-icons/fa'
 import { useData } from "../Context/Context";
 const Card=(props)=>{
     const {setData, data} = useData()
-
     const deleteNode=(id)=>{
         console.log("Clicked "+id)
        const notes=localStorage.getItem('notes')
@@ -13,15 +12,8 @@ const Card=(props)=>{
     }
     const updateNote=(id)=>{
         console.log("Clicked "+id)
-        const notes=localStorage.getItem('notes')
-        const notesArray=JSON.parse(notes)
-        const Note=notesArray.filter((note)=>note.id===id)
-        Note[0].title=prompt("Enter new title",Note[0].title)
-        Note[0].body=prompt("Enter new body",Note[0].body)
-        let Notes=notesArray.filter((note)=>note.id!==id)
-        Notes=[Note[0],...Notes]
-        localStorage.setItem('notes',JSON.stringify(Notes))
-        setData(Notes)
+        props.currentNoteId(id)
+        props.change(true)
     }
     return(
         <div className="w-[300px] h-[300px] bg-[#F7CE21] relative p-2 flex flex-col justify-center items-center">
