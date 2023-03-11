@@ -10,9 +10,6 @@ const Home=()=>{
     const [dataCard,setDataCard]=useState()
     const [currentNoteId,setCurrentNoteId]=useState(data[0]?data[0].id:"")
     useEffect(()=>{
-        console.log(data)
-    },[])
-    useEffect(()=>{
         setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} currentNoteId={setCurrentNoteId} change={setClicked}/>))
     },[data])
     return(
@@ -34,10 +31,12 @@ const Home=()=>{
         <div className="flex flex-row justify-start items-center gap-3 mt-2 w-full min-h-[200px]">
             {data[0]?dataCard:<p>Create a new Note</p>}
         </div>
+        <div>
         <p className="font-Karla text-xl flex flex-row gap-1 justify-start items-center">
             Recents
             <FaRegClock color={'black'}/>
         </p>
+        </div>
         </div>
         <App Clicked={clicked} change={setClicked} currentNoteId={currentNoteId}/>
         </div>
