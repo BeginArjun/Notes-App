@@ -13,7 +13,7 @@ const App=(props)=>{
     let notes=data
 
     const createNewNote=()=>{
-        const newNote={id:nanoid(),title:title,body:body,date:new Date().toLocaleDateString()}
+        const newNote={id:nanoid(),title:title,body:body,date:new Date().toLocaleDateString(),currentColor:currentColor}
         notes=[newNote,...notes]
         localStorage.setItem('notes',JSON.stringify(notes))
         setData(notes)
@@ -23,6 +23,7 @@ const App=(props)=>{
         const currentNote=data.filter((note)=>note.id===props.currentNoteId)
         currentNote[0].title=title
         currentNote[0].body=body
+        currentNote[0].currentColor=currentColor
         let Notes=data.filter((note)=>note.id!==props.currentNoteId)
         Notes=[currentNote[0],...Notes]
         localStorage.setItem('notes',JSON.stringify(Notes))

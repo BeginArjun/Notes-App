@@ -10,7 +10,7 @@ const Home=()=>{
     const [dataCard,setDataCard]=useState()
     const [currentNoteId,setCurrentNoteId]=useState(data[0]?data[0].id:"")
     useEffect(()=>{
-        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} currentNoteId={setCurrentNoteId} change={setClicked}/>))
+        setDataCard(data.map((note,idx)=><Card key={note.id} id={note.id} title={note.title}  color={note.currentColor} body={note.body} date={note.date} currentNoteId={setCurrentNoteId} change={setClicked}/>))
     },[data])
     return(
         <div className="z-[1] p-6 w-screen h-full bg-[#CFB5E2] relative">

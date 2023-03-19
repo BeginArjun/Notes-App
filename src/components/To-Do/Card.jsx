@@ -15,8 +15,9 @@ const Card=(props)=>{
         props.currentNoteId(id)
         props.change(true)
     }
+    console.log(props.color)
     return(
-        <div className="w-[300px] h-[300px] bg-[#F7CE21] relative p-2 flex flex-col justify-center items-center">
+        <div style={{backgroundColor:props.color}} className="w-[300px] h-[300px] relative p-2 flex flex-col justify-center items-center">
             <p className="font-Aurore absolute top-1 left-3 underline text-2xl">{props.title}</p>
             <p className="font-Inter text-lg relative">{props.body}</p>
             <p className="font-Aurore absolute bottom-1 right-1">{props.date}</p>
