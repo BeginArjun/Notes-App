@@ -9,7 +9,6 @@ const App=(props)=>{
     const {setData, data} = useData()
     const [body,setBody]=useState("")
     const [title,setTitle]=useState("")
-    let note={}
     let notes=data
 
     const createNewNote=()=>{
@@ -21,6 +20,7 @@ const App=(props)=>{
 
     const saveNote=()=>{
         const currentNote=data.filter((note)=>note.id===props.currentNoteId)
+        console.log(currentNote)
         currentNote[0].title=title
         currentNote[0].body=body
         currentNote[0].currentColor=currentColor
@@ -28,7 +28,7 @@ const App=(props)=>{
         Notes=[currentNote[0],...Notes]
         localStorage.setItem('notes',JSON.stringify(Notes))
         setData(Notes)
-        setTitle("")
+        setTitle("Untitled")
         setBody("")
         props.change(false)
     }
