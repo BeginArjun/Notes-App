@@ -14,32 +14,35 @@ const Home=()=>{
     },[data])
     return(
         <div className="z-[1] p-6 w-screen h-full bg-[#CFB5E2] relative">
-        <div style={{filter:clicked?'blur(8px)':'none'}}>
-        <p className="font-Inter font-bold lg:text-[64px]">Hi, what's on your mind?</p>
-        < div className="flex flex-row justify-between w-full items-center gap-3">
-        <div className="flex flex-row justify-center items-center gap-2">
-        <Tags active={true} tag={"All"} />
-        <Tags active={false} tag={"Favourites"} />
-        <Tags active={false} tag={"Urgent"} />
-        </div>
-        <button className="rounded-full w-[130px] h-[30px] border-[3px] border-black text-center text-white bg-black" onClick={()=>setClicked(true)}>Create</button>
-        <button className="rounded-full w-[130px] h-[30px] border-[3px] border-black text-center text-white bg-black" onClick={()=>{
-            localStorage.clear()
-            setData([])
-        }}>Clear</button>
-        </div>
-        <div className="flex flex-row justify-start items-center gap-3 mt-2 w-full min-h-[200px]">
-            {data[0]?dataCard:<p>Create a new Note</p>}
-        </div>
-        <div>
-        <p className="font-Karla text-xl flex flex-row gap-1 justify-start items-center">
-            Recents
-            <FaRegClock color={'black'}/>
-        </p>
-        </div>
-        </div>
-        <App Clicked={clicked} change={setClicked} currentNoteId={currentNoteId}/>
-        </div>
+  <div style={{ filter: clicked ? 'blur(8px)' : 'none' }}>
+    <p className="font-Inter font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[64px]">
+      Hi, what's on your mind?
+    </p>
+    <div className="flex flex-col sm:flex-row justify-between w-full items-center gap-3">
+      <div className="flex flex-row justify-center items-center gap-2">
+        <button
+        className="rounded-full w-[130px] h-[30px] border-[3px] border-black text-center text-white bg-black"
+        onClick={() => setClicked(true)}
+      >
+        Create
+      </button>
+      <button
+        className="rounded-full w-[130px] h-[30px] border-[3px] border-black text-center text-white bg-black"
+        onClick={() => {
+          localStorage.clear();
+          setData([]);
+        }}
+      >
+        Clear
+      </button>
+      </div>
+    </div>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2 w-full min-h-[200px]">
+        {data[0] ? dataCard : <p>Create a new Note</p>}
+    </div>
+  </div>
+  <App Clicked={clicked} change={setClicked} currentNoteId={currentNoteId} />
+</div>
     )
 }
 export default Home;
